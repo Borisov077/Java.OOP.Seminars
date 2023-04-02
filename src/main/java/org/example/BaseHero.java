@@ -1,6 +1,10 @@
 package org.example;
 
-public abstract class BaseHero {
+import unit.Names;
+
+import java.util.Random;
+
+public abstract class BaseHero implements GameInterface {
     public String name;
     protected String class_name;
 
@@ -12,6 +16,7 @@ public abstract class BaseHero {
 
     protected int armor;
     protected int[] damage;
+    protected int atak;
 
 
     @Override
@@ -19,15 +24,26 @@ public abstract class BaseHero {
         return name + " " + hp + " " + armor + " " + class_name;
     }
 
-    public BaseHero(int hp, String name, int x, int y, int armor, int[] damage, String class_name){
+    public BaseHero(int hp, int x, int y, int armor, int atak, int[] damage, String class_name){
+        this.name = getName();
         this.hp = hp;
         this.name = name;
         this.x = x;
+        this.atak = atak;
         this.y = y;
         this.armor = armor;
         this.damage = damage;
         this.class_name = class_name;
     }
+   @Override
+   public String getInfo(){
+        return "";
+   }
+   public String getName(){
+        return Names.values()[new Random().nextInt(Names.values().length)].toString();
+
+   }
+
 
     protected int getInt(){
         return 1;
